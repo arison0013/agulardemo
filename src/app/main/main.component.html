@@ -1,0 +1,16 @@
+<h1>Table</h1>
+<input type="text" [(ngModel)]="obj.name" #ctrl="ngModel">
+<input type="text" [(ngModel)]="obj.email" #ctrl="ngModel">
+<button (click)="addData(obj)">Add</button>
+<table>
+    <thead>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Email</th>
+    </thead>
+    <tbody *ngFor="let role of list">
+        <td>{{role.id}}</td>
+        <td>{{role.name}}</td>
+        <td>{{role.email}}</td>
+    </tbody>
+</table>
