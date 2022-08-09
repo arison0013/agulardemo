@@ -8,17 +8,16 @@ import { Component, OnInit } from '@angular/core';
 export class MainComponent implements OnInit {
 
   constructor() { }
-  name:any=[]
-  email:any=[]
-   obj:any={
-    "name" :this.name,
-    "email":this.email
+  obj: any = {
+    name: '',
+    email: ''
   }
-  
- 
-  
+  firstName: any;
+  emailName: any;
+  change:number= -1;
+  selectedId:string='';
+
   ngOnInit(): void {
-    debugger;
     this.list;
   }
 
@@ -40,16 +39,36 @@ export class MainComponent implements OnInit {
     },
   ]
 
-  addData(obj:any){
-    this.list.id=obj.id
-this.list.name=obj.name
-console.log(obj.name)
-this.list.email=obj.email
-console.log(obj.email)
-this.list.push(obj.name)
-this.list.push(obj.email)
-console.log(this.list)
+  addData(task:any) { // for make a Add button to update we use id and store it into SkelectedID and on the bases of that we aplly if condition and then we check the index of that llist gain and match with selected ID
+    debugger;
+    if(this.selectedId!=''){
+     let index=this.list.findIndex((p:any)=>p.id==this.selectedId);
+      this.list[index].name=this.obj.name;
+      this.list[index].email=this.obj.email;
+      this.selectedId='';
+    }
+    else{
+      this.list.push({
+        name: this.obj.name,
+        email: this.obj.email
+      })
+     
+      
+    }
+  }
 
-
+  //   getEdit(i:any){
+  // this.obj.name=this.list[i].name;
+  // this.obj.email=this.list[i].email;
+  //   }
+  
+  getEdit(id: any) {
+    debugger;
+    this.selectedId=id.toString();
+    let index = this.list.findIndex((p: any) => p.id == id); // here we get the value of list id and set it = to is that  we pass in role.id
+    if (index > -1) {
+      this.obj.name = this.list[index].name;
+      this.obj.email = this.list[index].email;
+    }
   }
 }

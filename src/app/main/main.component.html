@@ -1,16 +1,18 @@
 <h1>Table</h1>
 <input type="text" [(ngModel)]="obj.name" #ctrl="ngModel">
 <input type="text" [(ngModel)]="obj.email" #ctrl="ngModel">
-<button (click)="addData(obj)">Add</button>
+<button (click)="addData(obj.id)">Add</button>
 <table>
     <thead>
         <th>Id</th>
         <th>Name</th>
         <th>Email</th>
+        <th>Action</th>
     </thead>
-    <tbody *ngFor="let role of list">
+    <tbody *ngFor="let role of list"> <!-- let i = index; we alos use to index inbuilt functinality otherwise we use Role.id directly-->
         <td>{{role.id}}</td>
         <td>{{role.name}}</td>
         <td>{{role.email}}</td>
+        <td><button #Btn (click)="getEdit(role.id)">edit</button></td> <!--like we use getEdit(role.id) we also pass (i) as index-->
     </tbody>
 </table>
